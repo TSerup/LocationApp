@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { Button, ImageBackground, Text, View} from 'react-native';
+import { Text, View} from 'react-native';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 import MapView, {Marker} from 'react-native-maps'; 
