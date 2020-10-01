@@ -8,11 +8,22 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@react-native-community/geolocation": "^2.0.2",
+    "@types/hoist-non-react-statics": "^3.3.1",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-leaflet": "^2.5.2",
     "expo": "~38.0.8",
+    "expo-location": "~8.2.1",
+    "expo-permissions": "~9.0.1",
     "expo-status-bar": "^1.0.2",
-    "react": "~16.11.0",
-    "react-dom": "~16.11.0",
+    "leaflet": "^1.7.1",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-leaflet": "^2.7.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-38.0.2.tar.gz",
+    "react-native-get-location": "^1.4.3",
+    "react-native-maps": "0.27.1",
     "react-native-web": "~0.11.7"
   },
   "devDependencies": {

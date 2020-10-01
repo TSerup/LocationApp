@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import { Button, ImageBackground, Text, View} from 'react-native';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
-import MapView, {Marker} from 'react-native-maps'; 
 import styles from './styles';
 
 export default function App () {
@@ -13,13 +12,6 @@ export default function App () {
   const [errorMessage, setErrorMessage] = useState("");
   // State variable to contain street, city etc.
   const [geo, setGeo] = useState({street:"", city:"", postalCode:"", country:""});
-  // Region to show
-  const [region, setRegion] = useState({
-    latitude: 56.09691311,
-    longitude: 8.6106467,
-    latitudeDelta: 0.01,
-    longitudeDelta: 0.01
-  });
 
   // Runs after every render 
   useEffect(()=>{
@@ -40,8 +32,6 @@ export default function App () {
     getGeocodeAsync({latitude, longitude})
     // Change state for 'location' variable
     setLocation({latitude, longitude});
-    // Sets the region to the same as device location. Used for both map region and marker 
-    setRegion({latitude: latitude, longitude: longitude, latitudeDelta: 0.01, longitudeDelta: 0.01})
   };
   // Find location (street, city etc.) from lat. and lon.
   const getGeocodeAsync= async (location) => {
@@ -49,19 +39,13 @@ export default function App () {
     // Change state for 'geo' variable
     setGeo(geocode[0]);
   }
-
   return (
-    <View style={styles.container}>
-      <Text style={styles.heading1}>{geo  ? `${geo.postalCode}, ${geo.city}` :""}</Text>
-      <Text style={styles.heading2}>{geo ? geo.street:""}</Text>
-      <Text style={styles.heading3}>{location ? `${location.latitude}, ${location.longitude}` :""}</Text>
-      <Text style={styles.heading2}>{errorMessage}</Text>      
-      <MapView
-        style={styles.map}
-        region={region}
-        maxZoomLevel={10}>
-        <Marker coordinate={{ latitude: region.latitude, longitude: region.longitude }} />
-      </MapView>  
-    </View>
-    );
+    <ImageBackground  source={require("./assets/gps.jpg")} blurRadius={0.5} style={styles.container}>
+      <View style={styles.overlay}>
+        <Text style={styles.heading1}>{geo  ? `${geo.postalCode}, ${geo.city}` :""}</Text>
+        <Text style={styles.heading2}>{geo ? geo.street:""}</Text>
+        <Text style={styles.heading3}>{location ? `${location.latitude}, ${location.longitude}` :""}</Text>
+        <Text style={styles.heading2}>{errorMessage}</Text>
+      </View>
+    </ImageBackground>);
 }
